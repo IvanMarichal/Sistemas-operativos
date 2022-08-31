@@ -1,0 +1,7 @@
+arch_sal=/home/SISRDadmin/bin/ana-log.out
+#falla de sudo
+sudo cat /var/log/secure | awk '$5="sudo:" && $8" "$9" "$10=="command not allowed" {print $1"_"$2, $3, $6, $18"_"$19}'>$arch_sal
+yad --width=634 --height=234 --list --column "Dia" --column "Hora" --column "Usuario" --column "Comando" \
+$(cat $arch_sal) \
+--title " * Mal uso de sudo * " --text "Listado de sudo: command not allowed" >/dev/null
+#envio linea seleccionada a /dev/null
